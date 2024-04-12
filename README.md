@@ -34,7 +34,3 @@
 2. Tomcat 서버를 설치하고 프로젝트를 배포합니다.
 3. SQLite 데이터베이스를 설정하고 프로젝트에 연결합니다.
 4. 서버를 실행하고 브라우저에서 웹서비스에 접속합니다.
-
-## 라이선스
-
-이 프로젝트는 [CC0 1.0 Universal (CC0 1.0) Public Domain Dedication](https://creativecommons.org/publicdomain/zero/1.0/deed.ko) 라이선스를 사용합니다. 
