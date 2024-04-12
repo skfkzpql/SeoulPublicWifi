@@ -24,6 +24,6 @@ public class DeleteBookmarkGroupServlet extends HttpServlet {
     	bookmarkGroupDTO.setBookmark_group_id(id);
     	bookmarkGroupService.deleteBookmarkGroup(bookmarkGroupDTO);
         response.setStatus(HttpServletResponse.SC_OK);
-        
+
     }
 }

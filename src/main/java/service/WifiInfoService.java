@@ -28,7 +28,7 @@ public class WifiInfoService implements WifiInfoDAO {
 	public int insertWifiInfo() {
 		int totalAffectedRows = 0;
 		String dropSql = "DROP TABLE IF EXISTS WifiInfo;";
-		
+
 		String createSql = "CREATE TABLE IF NOT EXISTS WifiInfo (\n" +
 	             "    X_SWIFI_MGR_NO TEXT PRIMARY KEY,\n" +
 	             "    X_SWIFI_WRDOFC TEXT,\n" +
@@ -47,7 +47,7 @@ public class WifiInfoService implements WifiInfoDAO {
 	             "    LNT TEXT,\n" +
 	             "    WORK_DTTM TEXT\n" +
 	             ");";
-		
+
 		String insertSql = "INSERT INTO WifiInfo "
                 + "(X_SWIFI_MGR_NO, X_SWIFI_WRDOFC, X_SWIFI_MAIN_NM, "
                 + "X_SWIFI_ADRES1, X_SWIFI_ADRES2, X_SWIFI_INSTL_FLOOR, "
@@ -55,17 +55,17 @@ public class WifiInfoService implements WifiInfoDAO {
                 + "X_SWIFI_CMCWR, X_SWIFI_CNSTC_YEAR, X_SWIFI_INOUT_DOOR, "
                 + "X_SWIFI_REMARS3, LAT, LNT, WORK_DTTM) "
                 + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		
+
 	    try (Connection conn = DBConnector.connect();
 	    	 PreparedStatement dropPstmt = conn.prepareStatement(dropSql);
 	    	 PreparedStatement createPstmt = conn.prepareStatement(createSql);
 	    	 PreparedStatement insertPstmt = conn.prepareStatement(insertSql);){
-	    	
+
 	    	dropPstmt.execute();
 	    	createPstmt.execute();
-	        
+
 	        int listTotalCount = loadFromAPI(1, 1).getTbPublicWifiInfo().getList_total_count();
-	        
+
 	        conn.setAutoCommit(false);
 
 	        for (int i = 0; i <= listTotalCount / 1000; i++) {
@@ -73,7 +73,7 @@ public class WifiInfoService implements WifiInfoDAO {
 	            int end = Math.min(start + 999, listTotalCount);
 
 	            WifiInfoApiResponseVO wifiInfoApiResponseVO = loadFromAPI(start, end);
-	            
+
 	            for (WifiInfoVO wifi : wifiInfoApiResponseVO.getTbPublicWifiInfo().getRow()) {
 	            	insertPstmt.setString(1, wifi.getX_SWIFI_MGR_NO());
 	            	insertPstmt.setString(2, wifi.getX_SWIFI_WRDOFC());
@@ -93,7 +93,7 @@ public class WifiInfoService implements WifiInfoDAO {
 	    	        insertPstmt.setString(16, wifi.getWORK_DTTM());
 	    	        insertPstmt.addBatch();
 	    	    }
-	            
+
 	            int[] batchResult = insertPstmt.executeBatch();
 	            totalAffectedRows += Arrays.stream(batchResult).sum();
 	            conn.commit();
@@ -103,7 +103,7 @@ public class WifiInfoService implements WifiInfoDAO {
 	        if (totalAffectedRows != listTotalCount) {
 	            System.out.println("삽입한 데이터의 개수와 API에서 가져온 데이터의 개수가 다릅니다.");
 	        }
-	        
+
 	        return totalAffectedRows;
 	    } catch (SQLException e) {
 	        e.printStackTrace();
@@ -141,7 +141,7 @@ public class WifiInfoService implements WifiInfoDAO {
 	public WifiInfoDTO selectWifiInfo(WifiInfoInputDTO wifiInfoInputDTO) {
 	    WifiInfoDTO wifiInfoDTO2 = null;
 	    String sql = "SELECT * FROM WifiInfo WHERE X_SWIFI_MGR_NO = ?";
-	    
+
 	    try (Connection conn = DBConnector.connect();
 	         PreparedStatement pstmt = conn.prepareStatement(sql);) {
 
@@ -153,11 +153,11 @@ public class WifiInfoService implements WifiInfoDAO {
 	                System.out.println("데이터 조회 실패");
 	            }
 	        }
-	        
+
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
-	    
+
 	    return wifiInfoDTO2;
 	}
 
@@ -176,7 +176,7 @@ public class WifiInfoService implements WifiInfoDAO {
 
 	    try (Connection conn = DBConnector.connect();
 	         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-	        
+
 	        pstmt.setDouble(1, wifiInfoInputDTO.getLatInput());
 	        pstmt.setDouble(2, wifiInfoInputDTO.getLntInput());
 	        pstmt.setDouble(3, wifiInfoInputDTO.getLatInput());

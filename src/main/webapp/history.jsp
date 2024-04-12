@@ -1,40 +1,42 @@
 <!-- hisotry.jsp -->
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>위치 히스토리 목록</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>위치 히스토리 목록</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>위치 히스토리 목록</h1>
-    <%@ include file="header.jsp"%>
+	<h1>위치 히스토리 목록</h1>
+	<%@ include file="header.jsp"%>
 
-    <!-- 전체 삭제 버튼 -->
-    <button onclick="deleteAllHistory()" style="margin-top: 20px;">전체 삭제</button>
+	<!-- 전체 삭제 버튼 -->
+	<button onclick="deleteAllHistory()" style="margin-top: 20px;">전체
+		삭제</button>
 
-    <table id="historyTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>X좌표</th>
-                <th>Y좌표</th>
-                <th>조회일자</th>
-                <th>비고</th>
-            </tr>
-        </thead>
-        <tbody id="historyTableBody">
-            <!-- 이곳에 히스토리 데이터가 추가될 것입니다. -->
-        </tbody>
-    </table>
+	<table id="historyTable">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>X좌표</th>
+				<th>Y좌표</th>
+				<th>조회일자</th>
+				<th>비고</th>
+			</tr>
+		</thead>
+		<tbody id="historyTableBody">
+			<!-- 이곳에 히스토리 데이터가 추가될 것입니다. -->
+		</tbody>
+	</table>
 
-    <!-- 페이징 버튼 -->
-    <div id="pagination">
-        <!-- 페이지 번호를 보여줄 곳 -->
-    </div>
+	<!-- 페이징 버튼 -->
+	<div id="pagination">
+		<!-- 페이지 번호를 보여줄 곳 -->
+	</div>
 
-    <script>
+	<script>
         var currentPage = 1; // 현재 페이지 번호
 
         // 페이지 로드 시 초기 히스토리 목록 불러오기

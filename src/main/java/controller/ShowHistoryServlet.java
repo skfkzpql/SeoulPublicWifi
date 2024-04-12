@@ -22,7 +22,8 @@ public class ShowHistoryServlet extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    @Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
 
@@ -31,7 +32,7 @@ public class ShowHistoryServlet extends HttpServlet {
 
         HistoryDAO historyDAO = new HistoryService();
         PaginatedHistoryDTO paginatedHistory = historyDAO.selectHistoryPagination(startIndex, pageSize);
-        
+
         Gson gson = new Gson();
         String jsonResponse = gson.toJson(paginatedHistory);
 
@@ -40,7 +41,8 @@ public class ShowHistoryServlet extends HttpServlet {
         response.getWriter().write(jsonResponse);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    @Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
     }

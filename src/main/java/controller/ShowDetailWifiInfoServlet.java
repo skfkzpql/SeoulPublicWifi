@@ -22,7 +22,7 @@ import service.WifiInfoService;
 @WebServlet("/ShowDetailWifiInfoServlet")
 public class ShowDetailWifiInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,20 +34,22 @@ public class ShowDetailWifiInfoServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    String jsonWifiInfoInputDTO = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
 	    Gson gson = new Gson();
 	    WifiInfoInputDTO wifiInfoInputDTO = gson.fromJson(jsonWifiInfoInputDTO, WifiInfoInputDTO.class);
-	    
+
 	    response.setCharacterEncoding("UTF-8");
-	    
+
 	    WifiInfoDAO wifiInfoDAO = new WifiInfoService();
 	    WifiInfoDTO wifiInfoDTO = wifiInfoDAO.selectWifiInfo(wifiInfoInputDTO);
 	    String jsonResponse = gson.toJson(wifiInfoDTO);

@@ -1,6 +1,6 @@
 <!-- bookmark.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,26 +9,26 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>와이파이 정보 구하기</h1>
-    <%@ include file="header.jsp"%>
-    <div class="bookmarkDiv">
-        <button id="deleteAllBookmarkBtn">북마크 전체 삭제</button>
-    </div>
-    
-    <table id="bookmarkTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>북마크 그룹 이름</th>
-                <th>와이파이명</th>
-                <th>등록일자</th>
-                <th>비고</th>
-            </tr>
-        </thead>
-        <tbody id="bookmarkList"></tbody>
-    </table>
-    
-    <script>
+	<h1>와이파이 정보 구하기</h1>
+	<%@ include file="header.jsp"%>
+	<div class="bookmarkDiv">
+		<button id="deleteAllBookmarkBtn">북마크 전체 삭제</button>
+	</div>
+
+	<table id="bookmarkTable">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>북마크 그룹 이름</th>
+				<th>와이파이명</th>
+				<th>등록일자</th>
+				<th>비고</th>
+			</tr>
+		</thead>
+		<tbody id="bookmarkList"></tbody>
+	</table>
+
+	<script>
         window.onload = function() {
             showBookmark();
         };

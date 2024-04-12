@@ -19,26 +19,26 @@ public class BookmarkService implements BookmarkDAO{
 		int result = -1;
 		String selectSql = "SELECT COUNT(*) FROM Bookmark WHERE bookmark_group_id = ? and wifi_info_id = ?";
 		String insertSql = "INSERT INTO Bookmark (bookmark_group_id, wifi_info_id) VALUES (?, ?)";
-		
+
 		try (Connection conn = DBConnector.connect();
 	         PreparedStatement selectPstmt = conn.prepareStatement(selectSql);
 			 PreparedStatement insertPstmt = conn.prepareStatement(insertSql)) {
-			
+
 			selectPstmt.setInt(1, bookmarkDTO.getBookmark_group_id());
 			selectPstmt.setString(2, bookmarkDTO.getWifi_info_id());
 			ResultSet rs = selectPstmt.executeQuery();
 	        if (rs.next() && rs.getInt(1) > 0) {
 	            return -3;
 	        }
-			
+
 	        insertPstmt.setInt(1, bookmarkDTO.getBookmark_group_id());
 	        insertPstmt.setString(2, bookmarkDTO.getWifi_info_id());
 			result = insertPstmt.executeUpdate();
-			
+
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        }
-		
+
 			return result;
 	    }
 
@@ -60,7 +60,7 @@ public class BookmarkService implements BookmarkDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-		
+
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public class BookmarkService implements BookmarkDAO{
                 "FROM Bookmark " +
                 "INNER JOIN Bookmark_group ON Bookmark.bookmark_group_id = Bookmark_group.bookmark_group_id " +
                 "INNER JOIN WifiInfo ON Bookmark.wifi_info_id = WifiInfo.X_SWIFI_MGR_NO;";
-	
+
 		try (Connection conn = DBConnector.connect();
 		  PreparedStatement pstmt = conn.prepareStatement(selectSql);
 		  ResultSet rs = pstmt.executeQuery()) {

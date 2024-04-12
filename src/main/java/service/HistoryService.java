@@ -46,12 +46,12 @@ public class HistoryService implements HistoryDAO {
         String selectSql = "SELECT * FROM History ORDER BY time_stamp DESC, history_id DESC LIMIT ?, ?";
 
         int totalRecords = 0;
-        
+
         List<HistoryDTO> historyList = new ArrayList<>();
         try (Connection conn = DBConnector.connect();
              PreparedStatement countPstmt = conn.prepareStatement(countSql);
              PreparedStatement selectPstmt = conn.prepareStatement(selectSql)) {
-            
+
             // 전체 레코드 수 가져오기
             try (ResultSet countRs = countPstmt.executeQuery()) {
                 if (countRs.next()) {
@@ -62,7 +62,7 @@ public class HistoryService implements HistoryDAO {
             // 페이징된 결과 가져오기
             selectPstmt.setInt(1, startIndex);
             selectPstmt.setInt(2, pageSize);
-            
+
             try (ResultSet rs = selectPstmt.executeQuery()) {
                 while (rs.next()) {
                     HistoryDTO historyDTO = DTOMapper.mapResultSetToDTO(rs, HistoryDTO.class);
@@ -73,14 +73,14 @@ public class HistoryService implements HistoryDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         int totalPages = (int) Math.ceil((double) totalRecords / pageSize);
-        
+
         PaginatedHistoryDTO paginatedHistory = new PaginatedHistoryDTO();
         paginatedHistory.setHistoryList(historyList);
         paginatedHistory.setCurrentPage(startIndex / pageSize + 1);
         paginatedHistory.setTotalPages(totalPages);
-        
+
         return paginatedHistory;
     }
 

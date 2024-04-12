@@ -122,7 +122,7 @@ public class BookmarkGroupService implements BookmarkGroupDAO {
                 BookmarkGroupDTO bookmarkGroupDTO = DTOMapper.mapResultSetToDTO(rs, BookmarkGroupDTO.class);
 
                 bookmarkGroupList.add(bookmarkGroupDTO);
-                
+
             }
         } catch (SQLException e) {
             e.printStackTrace();

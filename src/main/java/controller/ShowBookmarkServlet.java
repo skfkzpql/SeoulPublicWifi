@@ -24,13 +24,14 @@ public class ShowBookmarkServlet extends HttpServlet {
         super();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    @Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
     		throws ServletException, IOException {
-        
+
 
         BookmarkDAO bookmarkDAO = new BookmarkService();
         List<BookmarkDTO> bookmarkList = bookmarkDAO.selectAllBookmark();
-        
+
         Gson gson = new Gson();
         String jsonResponse = gson.toJson(bookmarkList);
 
@@ -39,7 +40,8 @@ public class ShowBookmarkServlet extends HttpServlet {
         response.getWriter().write(jsonResponse);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    @Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
     }

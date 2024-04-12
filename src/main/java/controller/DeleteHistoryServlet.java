@@ -19,18 +19,19 @@ import service.HistoryService;
 @WebServlet("/DeleteHistoryServlet")
 public class DeleteHistoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     public DeleteHistoryServlet() {
         super();
     }
 
-    protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String jsonHistoryDTO = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
         Gson gson = new Gson();
         HistoryDTO historyDTO = gson.fromJson(jsonHistoryDTO, HistoryDTO.class);
         HistoryDAO historyDAO = new HistoryService();
         historyDAO.deleteHistory(historyDTO);
-        
+
         response.setStatus(HttpServletResponse.SC_OK);
     }
 }

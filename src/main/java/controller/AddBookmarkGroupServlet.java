@@ -22,10 +22,10 @@ public class AddBookmarkGroupServlet extends HttpServlet {
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String jsonBookmarkGroupDTO = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
-    	
+
     	Gson gson = new Gson();
     	BookmarkGroupDTO bookmarkGroupDTO = gson.fromJson(jsonBookmarkGroupDTO, BookmarkGroupDTO.class);
-       
+
         BookmarkGroupDAO bookmarkGroupService = new BookmarkGroupService();
 
         int result = bookmarkGroupService.insertBookmarkGroup(bookmarkGroupDTO);

@@ -1,37 +1,41 @@
 <!-- bookmark-group-edit.jsp -->
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>북마크 그룹 수정</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>북마크 그룹 수정</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>북마크 그룹 수정</h1>
-    <%@ include file="header.jsp"%>
+	<h1>북마크 그룹 수정</h1>
+	<%@ include file="header.jsp"%>
 
-    <form id="editBookmarkGroupForm" action="updateBookmarkGroupServlet" method="post">
-        <input type="hidden" id="groupId" name="id" value="<%= request.getParameter("id") %>">
-        <table>
-            <tr>
-                <th>북마크 이름</th>
-                <td><input type="text" id="groupName" name="groupName" value="<%= request.getParameter("name") %>"></td>
-            </tr>
-            <tr>
-                <th>순서</th>
-                <td><input type="number" id="sequence" name="sequence" value="<%= request.getParameter("sequence") %>"></td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align: center">
-                    <a href="bookmark-group.jsp">돌아가기</a> |
-                    <button type="submit">수정</button>
-                </td>
-            </tr>
-        </table>
-    </form>
+	<form id="editBookmarkGroupForm" action="updateBookmarkGroupServlet"
+		method="post">
+		<input type="hidden" id="groupId" name="id"
+			value="<%= request.getParameter("id") %>">
+		<table>
+			<tr>
+				<th>북마크 이름</th>
+				<td><input type="text" id="groupName" name="groupName"
+					value="<%= request.getParameter("name") %>"></td>
+			</tr>
+			<tr>
+				<th>순서</th>
+				<td><input type="number" id="sequence" name="sequence"
+					value="<%= request.getParameter("sequence") %>"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center"><a
+					href="bookmark-group.jsp">돌아가기</a> |
+					<button type="submit">수정</button></td>
+			</tr>
+		</table>
+	</form>
 
-    <script>
+	<script>
 	    document.getElementById("editBookmarkGroupForm").addEventListener("submit", function(event) {
 	        event.preventDefault();
 	

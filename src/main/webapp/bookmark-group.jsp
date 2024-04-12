@@ -1,36 +1,38 @@
 <!-- bookmark-group.jsp -->
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>북마크 그룹</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>북마크 그룹</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>북마크 그룹</h1>
-    <%@ include file="header.jsp"%>
-    
+	<h1>북마크 그룹</h1>
+	<%@ include file="header.jsp"%>
+
 	<div class="bookmarkDiv">
-    	<button onclick="location.href='bookmark-group-add.jsp'">북마크 그룹 이름 추가</button>
+		<button onclick="location.href='bookmark-group-add.jsp'">북마크
+			그룹 이름 추가</button>
 		<button id="deleteAllBookmarkGroupsBtn">북마크 그룹 전체 삭제</button>
 	</div>
-    
-    <table id="bookmarkGroupTable">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>북마크 이름</th>
-                <th>순서</th>
-                <th>등록일자</th>
-                <th>수정일자</th>
-                <th>비고</th>
-            </tr>
-        </thead>
-        <tbody id="bookmarkGroupList"></tbody>
-    </table>
 
-    <script>
+	<table id="bookmarkGroupTable">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>북마크 이름</th>
+				<th>순서</th>
+				<th>등록일자</th>
+				<th>수정일자</th>
+				<th>비고</th>
+			</tr>
+		</thead>
+		<tbody id="bookmarkGroupList"></tbody>
+	</table>
+
+	<script>
         // 페이지 로드 시 실행
         window.onload = function() {
         	showBookmarkGroup();

@@ -8,5 +8,5 @@ public class HistoryDTO {
     private String lat;
     private String lnt;
     private String time_stamp;
-    
+
 }
