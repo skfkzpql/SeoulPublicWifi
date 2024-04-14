@@ -20,63 +20,47 @@
 	display: none; /* 초기에는 숨김 */
 }
 
-/* 스피너 회전 애니메이션 */
-@
-keyframes spin { 0% {
-	transform: rotate(0deg);
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
-100
-
-
-%
-{
-transform
-
-
-:
-
-
-rotate
-(
-
-
-360deg
-
-
-)
-;
 
 
 }
 }
 </style>
 <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // 페이지 로드 시 로딩 스피너 표시
-            document.querySelector(".loading-spinner").style.display = "block";
-
-            // Fetch API를 사용하여 서블릿에 요청 전송
-            fetch("WifiInfoSyncServlet")
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error("서버에서 데이터를 가져오는 데 실패했습니다.");
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    // 서버로부터 데이터를 성공적으로 받으면 스피너 숨김
-                    document.querySelector(".loading-spinner").style.display = "none";
-                    // 받은 데이터로 메시지 표시
-                    document.getElementById("message").textContent = data;
-                })
-                .catch(error => {
-                    // 에러 발생 시 스피너 숨김
-                    document.querySelector(".loading-spinner").style.display = "none";
-                    // 에러 메시지 표시
-                    document.getElementById("message").textContent = error.message;
-                });
-        });
-    </script>
+	document.addEventListener("DOMContentLoaded", function() {
+	    // 페이지 로드 시 로딩 스피너 표시
+	    var spinner = document.querySelector(".loading-spinner");
+	    spinner.style.display = "block";
+	
+	    // Fetch API를 사용하여 서블릿에 요청 전송
+	    fetch("WifiInfoSyncServlet")
+	        .then(response => {
+	            if (!response.ok) {
+	                throw new Error("서버에서 데이터를 가져오는 데 실패했습니다.");
+	            }
+	            return response.text();
+	        })
+	        .then(data => {
+	            // 서버로부터 데이터를 성공적으로 받으면 스피너 숨김
+	            spinner.style.display = "none";
+	            // 받은 데이터로 메시지 표시
+	            document.getElementById("message").textContent = data;
+	        })
+	        .catch(error => {
+	            // 에러 발생 시 스피너 숨김
+	            spinner.style.display = "none";
+	            // 에러 메시지 표시
+	            document.getElementById("message").textContent = error.message;
+	        });
+	});
+</script>
 </head>
 <body>
 	<div style="text-align: center;">

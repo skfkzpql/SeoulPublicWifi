@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>와이파이 정보 구하기</title>
+<title>북마크</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<h1>와이파이 정보 구하기</h1>
+	<h1>북마크 보기</h1>
 	<%@ include file="header.jsp"%>
 	<div class="bookmarkDiv">
 		<button id="deleteAllBookmarkBtn">북마크 전체 삭제</button>
@@ -36,13 +36,13 @@
         function showBookmark() {
             fetch("ShowBookmarkServlet")
                 .then(response => response.json())
-                .then(bookmarks => {
-                    const bookmarkList = document.getElementById("bookmarkList");
-                    bookmarkList.innerHTML = "";
-                    
-                    bookmarks.forEach(bookmark => {
+                .then(bookmarkList => { // 수정: 변수명을 bookmark에서 bookmarkList로 변경
+                    const tableBody = document.getElementById("bookmarkList");
+                    tableBody.innerHTML = "";
+
+                    bookmarkList.forEach(bookmark => {
                         const row = document.createElement("tr");
-                        
+
                         // ID
                         const idCell = document.createElement("td");
                         idCell.textContent = bookmark.bookmark_id;
@@ -70,15 +70,16 @@
                         deleteLink.onclick = function() {
                             deleteBookmark(bookmark.bookmark_id);
                         };
+                        const actionsCell = document.createElement("td"); // 추가: actionsCell 생성
                         actionsCell.appendChild(deleteLink);
-
                         row.appendChild(actionsCell);
 
-                        bookmarkList.appendChild(row);
+                        tableBody.appendChild(row);
                     });
                 })
                 .catch(error => console.error("북마크 로드 실패:", error));
         }
+
 
         function deleteBookmark(bookmarkId) {
             if (confirm("북마크를 삭제하시겠습니까?")) {

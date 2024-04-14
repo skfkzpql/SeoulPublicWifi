@@ -17,32 +17,19 @@ import dto.WifiInfoDTO;
 import dto.WifiInfoInputDTO;
 import service.WifiInfoService;
 
-/**
- * Servlet implementation class ShowNearbyWifiInfoServelet
- */
 @WebServlet("/ShowNearbyWifiInfoServlet")
 public class ShowNearbyWifiInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public ShowNearbyWifiInfoServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    String jsonWifiInfoInputDTO = request.getReader().lines().collect(Collectors.joining(System.lineSeparator()));
